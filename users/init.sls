@@ -325,6 +325,9 @@ users_ssh_known_hosts_{{ name }}_{{ loop.index0 }}:
     {% if 'hash_hostname' in host %}
     - hash_hostname: {{ host['hash_hostname'] }}
     {% endif -%}
+    {% if not host.get('hash_known_hosts', True) %}
+    - hash_known_hosts: false
+    {% endif -%}
 {% endfor %}
 {% endif %}
 
